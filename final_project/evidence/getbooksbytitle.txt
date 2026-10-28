@@ -1,0 +1,22 @@
+Task 5 — getbooksbytitle (2 points)
+=====================================
+
+SERVER: Running on http://localhost:5000
+Title used: Pride and Prejudice
+
+COMMAND:
+  curl -X GET "http://localhost:5000/title/Pride%20and%20Prejudice"
+
+PowerShell equivalent used (Windows):
+  Invoke-RestMethod -Uri "http://localhost:5000/title/Pride and Prejudice" -Method GET | ConvertTo-Json -Depth 5
+
+HTTP STATUS: 200 OK
+
+OUTPUT:
+{
+  "8": {
+    "author": "Jane Austen",
+    "title": "Pride and Prejudice",
+    "reviews": {}
+  }
+}

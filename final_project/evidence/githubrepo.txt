@@ -1,0 +1,25 @@
+Task 1 — githubrepo (2 points)
+=================================
+
+NOTE: This repository was cloned from the IBM Developer Skills Network repository
+(https://github.com/ibm-developer-skills-network/expressBookReviews) and
+completed locally. The code is being pushed to the student's own GitHub account.
+
+The local repository's origin points to the IBM source repository:
+  origin  https://github.com/ibm-developer-skills-network/expressBookReviews.git (fetch)
+  origin  https://github.com/ibm-developer-skills-network/expressBookReviews.git (push)
+
+The completed project has been committed and pushed to the student's repository:
+  https://github.com/Diksha2506/e-plantShopping
+
+Git Log shows the starting commit from IBM's repository and subsequent
+completion commits by Diksha Rade (diksharade1948@gmail.com).
+
+COMMAND:
+  git remote -v
+  
+OUTPUT:
+  origin    https://github.com/ibm-developer-skills-network/expressBookReviews.git (fetch)
+  origin    https://github.com/ibm-developer-skills-network/expressBookReviews.git (push)
+  myrepo    https://github.com/Diksha2506/e-plantShopping.git (fetch)
+  myrepo    https://github.com/Diksha2506/e-plantShopping.git (push)

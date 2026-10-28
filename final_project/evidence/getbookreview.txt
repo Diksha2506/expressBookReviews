@@ -1,0 +1,19 @@
+Task 6 — getbookreview (2 points)
+===================================
+
+SERVER: Running on http://localhost:5000
+ISBN used: 1 (Things Fall Apart by Chinua Achebe)
+
+COMMAND:
+  curl -X GET http://localhost:5000/review/1
+
+PowerShell equivalent used (Windows):
+  Invoke-RestMethod -Uri "http://localhost:5000/review/1" -Method GET | ConvertTo-Json -Depth 5
+
+HTTP STATUS: 200 OK
+
+OUTPUT:
+{}
+
+Note: The reviews object is empty initially as no reviews have been posted yet.
+After a review is added (Task 9), the response would include the review content.

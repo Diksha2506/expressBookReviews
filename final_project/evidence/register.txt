@@ -1,0 +1,19 @@
+Task 7 — register (3 points)
+==============================
+
+SERVER: Running on http://localhost:5000
+
+COMMAND:
+  curl -X POST http://localhost:5000/register \
+    -H "Content-Type: application/json" \
+    -d '{"username": "testuser", "password": "testpass123"}'
+
+PowerShell equivalent used (Windows):
+  $body = @{username="testuser"; password="testpass123"} | ConvertTo-Json
+  $response = Invoke-WebRequest -Uri "http://localhost:5000/register" -Method POST -ContentType "application/json" -Body $body
+  $response.Content
+
+HTTP STATUS: 200 OK
+
+OUTPUT:
+{"message":"User successfully registered. Now you can login."}

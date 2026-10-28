@@ -1,0 +1,35 @@
+Task 9 — reviewadded (2 points)
+=================================
+
+SERVER: Running on http://localhost:5000
+Authenticated user: testuser (logged in via Task 8)
+ISBN: 1 (Things Fall Apart by Chinua Achebe)
+Review text: "Excellent book about Nigerian culture"
+
+WORKFLOW:
+Step 1 — Login to establish authenticated session:
+  curl -X POST http://localhost:5000/customer/login \
+    -H "Content-Type: application/json" \
+    -d '{"username": "testuser", "password": "testpass123"}' \
+    -c cookies.txt
+
+Step 2 — Add/Update review for book ISBN 1 using session cookie:
+  curl -X PUT "http://localhost:5000/customer/auth/review/1?review=Excellent+book+about+Nigerian+culture" \
+    -b cookies.txt
+
+PowerShell equivalent used (Windows) with session management:
+  $loginBody = @{username="testuser"; password="testpass123"} | ConvertTo-Json
+  $loginResponse = Invoke-WebRequest -Uri "http://localhost:5000/customer/login" `
+    -Method POST -ContentType "application/json" -Body $loginBody -SessionVariable "webSession"
+  $addReviewResponse = Invoke-WebRequest `
+    -Uri "http://localhost:5000/customer/auth/review/1?review=Excellent+book+about+Nigerian+culture" `
+    -Method PUT -WebSession $webSession
+  $addReviewResponse.Content
+
+HTTP STATUS: 200 OK
+
+LOGIN OUTPUT:
+{"message":"Customer successfully logged in","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoidGVzdHVzZXIiLCJpYXQiOjE3OTMxODU1NzIsImV4cCI6MTc5MzE4OTE3Mn0.o3o206_aY1WA0Hrey9Uw1XJ7Wxbj8ILUfiy7SXCFeMM"}
+
+ADD REVIEW OUTPUT:
+{"message":"Review successfully added/updated","book":"1","reviews":{"testuser":"Excellent book about Nigerian culture"}}

@@ -1,0 +1,34 @@
+Task 10 — deletereview (2 points)
+===================================
+
+SERVER: Running on http://localhost:5000
+Authenticated user: testuser
+ISBN: 1 (Things Fall Apart by Chinua Achebe)
+Review to delete: previously added "Excellent book about Nigerian culture"
+
+WORKFLOW:
+Step 1 — Login to establish authenticated session:
+  curl -X POST http://localhost:5000/customer/login \
+    -H "Content-Type: application/json" \
+    -d '{"username": "testuser", "password": "testpass123"}' \
+    -c cookies.txt
+
+Step 2 — Delete the review for book ISBN 1:
+  curl -X DELETE "http://localhost:5000/customer/auth/review/1" \
+    -b cookies.txt
+
+PowerShell equivalent used (Windows) with session management:
+  $loginBody = @{username="testuser"; password="testpass123"} | ConvertTo-Json
+  $loginResponse = Invoke-WebRequest -Uri "http://localhost:5000/customer/login" `
+    -Method POST -ContentType "application/json" -Body $loginBody -SessionVariable "delSession"
+  $delResponse = Invoke-WebRequest `
+    -Uri "http://localhost:5000/customer/auth/review/1" `
+    -Method DELETE -WebSession $delSession
+  $delResponse.Content
+
+HTTP STATUS: 200 OK
+
+OUTPUT:
+{"message":"Review successfully deleted","book":"1","reviews":{}}
+
+Note: The reviews object is empty after deletion, confirming the review for "testuser" was removed.

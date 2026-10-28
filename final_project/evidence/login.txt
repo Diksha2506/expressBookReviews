@@ -1,0 +1,24 @@
+Task 8 — login (3 points)
+==========================
+
+SERVER: Running on http://localhost:5000
+User registered in Task 7: testuser / testpass123
+
+COMMAND:
+  curl -X POST http://localhost:5000/customer/login \
+    -H "Content-Type: application/json" \
+    -d '{"username": "testuser", "password": "testpass123"}'
+
+PowerShell equivalent used (Windows):
+  $loginBody = @{username="testuser"; password="testpass123"} | ConvertTo-Json
+  $loginResponse = Invoke-WebRequest -Uri "http://localhost:5000/customer/login" -Method POST `
+    -ContentType "application/json" -Body $loginBody
+  $loginResponse.Content
+
+HTTP STATUS: 200 OK
+
+OUTPUT:
+{"message":"Customer successfully logged in","accessToken":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjoidGVzdHVzZXIiLCJpYXQiOjE3OTMxODU1NjMsImV4cCI6MTc5MzE4OTE2M30.JK073FvwaM-P9rgCa0aSmYIlYFfnhPDGi-6Sszxhrxs"}
+
+Note: accessToken is a JWT and is required for authenticated endpoints (Tasks 9, 10).
+The session cookie is automatically maintained by express-session on the server.
